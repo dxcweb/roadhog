@@ -1,10 +1,10 @@
 import { resolve } from 'path';
-import dev from 'dxc-webpack/dev';
+import dev from 'af-webpack/dev';
 import chalk from 'chalk';
 import getConfig, {
   watchConfigs,
   unwatchConfigs,
-} from 'dxc-webpack/getUserConfig';
+} from 'af-webpack/getUserConfig';
 import getWebpackConfig from './getWebpackConfig';
 import getPaths from './getPaths';
 import registerBabel from './registerBabel';
@@ -13,7 +13,7 @@ import { applyMock } from './utils/mock';
 const debug = require('debug')('roadhog:dev');
 
 export default function runDev(opts = {}) {
-  const { cwd = process.cwd(), entry } = opts;
+  const { cwd = process.cwd() } = opts;
 
   const babel = resolve(__dirname, './babel.js');
   const paths = getPaths(cwd);
@@ -29,7 +29,7 @@ export default function runDev(opts = {}) {
   let returnedWatchConfig = null;
   try {
     const configObj = getConfig({ cwd });
-    ({ config } = configObj);
+    config = configObj.config;
     returnedWatchConfig = configObj.watch;
     debug(`user config: ${JSON.stringify(config)}`);
   } catch (e) {
@@ -51,7 +51,6 @@ export default function runDev(opts = {}) {
     config,
     babel,
     paths,
-    entry,
   });
 
   dev({

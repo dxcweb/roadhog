@@ -2,7 +2,7 @@ import { join, basename, sep } from 'path';
 import { existsSync } from 'fs';
 import glob from 'glob';
 import isPlainObject from 'is-plain-object';
-import { webpackHotDevClientPath } from 'dxc-webpack/react-dev-utils';
+import { webpackHotDevClientPath } from 'af-webpack/react-dev-utils';
 
 // entry 支持 4 种格式：
 //
@@ -34,8 +34,11 @@ export default function(opts = {}) {
     );
   }
 
-  if (!isBuild) {
-    entryObj = Object.keys(entryObj).reduce(
+  // Add HotDevClient
+  if (isBuild) {
+    return entryObj;
+  } else {
+    return Object.keys(entryObj).reduce(
       (memo, key) =>
         !Array.isArray(entryObj[key])
           ? {
@@ -49,22 +52,6 @@ export default function(opts = {}) {
       {},
     );
   }
-
-  // add setPublicPath
-  const setPublicPathFile = join(__dirname, '../../template/setPublicPath.js');
-  if (process.env.SET_PUBLIC_PATH) {
-    entryObj = Object.keys(entryObj).reduce((memo, key) => {
-      return {
-        ...memo,
-        [key]: [
-          setPublicPathFile,
-          ...(Array.isArray(entryObj[key]) ? entryObj[key] : [entryObj[key]]),
-        ],
-      };
-    }, {});
-  }
-
-  return entryObj;
 }
 
 function getEntry(filePath) {

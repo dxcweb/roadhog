@@ -1,1 +1,1 @@
-module.exports = require('dxc-webpack/webpack');
+module.exports = require('af-webpack/webpack');

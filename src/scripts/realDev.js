@@ -1,15 +1,8 @@
-import { argv } from 'yargs';
+import server from '../dev';
 
 // 修复 Ctrl+C 时 dev server 没有正常退出的问题
 process.on('SIGINT', () => {
   process.exit(1);
 });
 
-const ops = {};
-if (argv._.length > 0) {
-  const entry = argv._[0];
-  ops.entry = entry;
-}
-
-process.env.NODE_ENV = 'development';
-require('../dev').default(ops);
+server();

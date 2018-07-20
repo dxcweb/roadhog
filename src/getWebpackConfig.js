@@ -1,4 +1,4 @@
-import getConfig from 'dxc-webpack/getConfig';
+import getConfig from 'af-webpack/getConfig';
 import defaultBrowsers from './defaultConfigs/browsers';
 import getEntry from './utils/getEntry';
 
@@ -7,7 +7,7 @@ const debug = require('debug')('roadhog:getWebpackConfig');
 const isDev = process.env.NODE_ENV === 'development';
 
 export default function(opts = {}) {
-  const { cwd, config, babel, paths, entry } = opts;
+  const { cwd, config, babel, paths } = opts;
 
   const browserslist = config.browserslist || defaultBrowsers;
   debug(`babel: ${babel}`);
@@ -19,7 +19,7 @@ export default function(opts = {}) {
 
     entry: getEntry({
       cwd: paths.appDirectory,
-      entry: entry || config.entry,
+      entry: config.entry,
       isBuild: !isDev,
     }),
     babel: config.babel || {

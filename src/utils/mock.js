@@ -1,4 +1,4 @@
-import { existsSync } from 'fs';
+import fs, { existsSync } from 'fs';
 import assert from 'assert';
 import chokidar from 'chokidar';
 import chalk from 'chalk';
@@ -88,7 +88,7 @@ function realApplyMock(devServer) {
   const config = getConfig();
   const { app } = devServer;
 
-  devServer.use(bodyParser.json({ limit: '5mb', strict: false }));
+  devServer.use(bodyParser.json({ limit: '5mb' }));
   devServer.use(
     bodyParser.urlencoded({
       extended: true,

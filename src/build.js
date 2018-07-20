@@ -1,6 +1,6 @@
 import { resolve } from 'path';
-import build from 'dxc-webpack/build';
-import getConfig from 'dxc-webpack/getUserConfig';
+import build from 'af-webpack/build';
+import getConfig from 'af-webpack/getUserConfig';
 import getWebpackConfig from './getWebpackConfig';
 import getPaths from './getPaths';
 import registerBabel from './registerBabel';
@@ -8,7 +8,7 @@ import registerBabel from './registerBabel';
 const debug = require('debug')('roadhog:build');
 
 export default function(opts = {}) {
-  const { cwd = process.cwd(), watch, entry } = opts;
+  const { cwd = process.cwd(), watch } = opts;
 
   const babel = resolve(__dirname, './babel.js');
   const paths = getPaths(cwd);
@@ -30,7 +30,6 @@ export default function(opts = {}) {
       config,
       babel,
       paths,
-      entry,
     });
 
     build({

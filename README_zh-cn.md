@@ -65,7 +65,7 @@ export default {
 我们约定 public 目录下的文件会在 dev 和 build 时被自动 copy 到输出目录（默认是 ./dist）下。所以可以在这里存放 favicon, iconfont, html, html 里引用的图片等。
 
 ## 配置
-roadhog 的 webpack 部分功能是基于 dxc-webpack 实现的。如需配置，在项目根目录新建 .webpackrc 完成，格式为 JSON，比如：
+umi 的 webpack 部分功能是基于 af-webpack 实现的。如需配置，在项目根目录新建 .webpackrc 完成，格式为 JSON，比如：
 
 ```js
 {
@@ -88,7 +88,6 @@ export default {
 * [define](#define)
 * [externals](#externals)
 * [alias](#alias)
-* [extraResolveExtensions](#extraresolveextensions)
 * [browserslist](#browserslist)
 * [publicPath](#publicpath)
 * [outputPath](#outputpath)
@@ -160,10 +159,6 @@ export default {
 
 ### alias
 配置 webpack 的 [resolve.alias](https://webpack.js.org/configuration/resolve/#resolve-alias) 属性。
-
-### extraResolveExtensions
-
-配置 webpack 的 [resolve.extensions](https://webpack.js.org/configuration/resolve/#resolve-extensions) 属性。
 
 ### browserslist
 配置 [browserslist](https://github.com/ai/browserslist)，同时作用于 babel-preset-env 和 autoprefixer。
@@ -318,10 +313,8 @@ export default {
 * `PORT`，端口号，默认 8000
 * `HOST`，默认 localhost
 * `ANALYZE`，是否在 build 时分析构建产物
-* `ESLINT`，设为 `none` 时禁用 eslint 检测
-* `TSLINT`，设为 `none` 时禁用 tslint 检测
-* `COMPRESS`, 设为 `none` 时 build 时不压缩
-* `BROWSER`, 设为 `none` 时不自动打开浏览器
+* `DISABLE_ESLINT`，禁用 eslint 检测
+* `NO_COMPRESS`, build 时不压缩
 
 比如使用 3000 端口启动 dev server，
 

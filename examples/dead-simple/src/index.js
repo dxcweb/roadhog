@@ -6,5 +6,3 @@ const app = dva();
 app.model(require('./model').default);
 app.router(() => <App />);
 app.start(document.getElementById('root'));
-
-import('./a');
