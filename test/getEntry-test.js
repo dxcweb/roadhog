@@ -20,7 +20,7 @@ describe('getEntry', () => {
     });
     expect(entry.index.length).toEqual(2);
     expect(
-      entry.index[0].indexOf('af-webpack/lib/webpackHotDevClient.js') > -1,
+      entry.index[0].indexOf('dxc-webpack/lib/webpackHotDevClient.js') > -1,
     ).toEqual(true);
   });
 
