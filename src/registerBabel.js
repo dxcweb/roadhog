@@ -1,5 +1,5 @@
 import { join } from 'path';
-import registerBabel from 'af-webpack/registerBabel';
+import registerBabel from 'dxc-webpack/registerBabel';
 import excapeRegExp from 'lodash.escaperegexp';
 
 export default function(babelPreset, opts) {
